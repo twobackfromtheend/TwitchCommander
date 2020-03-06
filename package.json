@@ -1,8 +1,8 @@
 {
   "name": "electron-react-boilerplate",
-  "productName": "ElectronReact",
+  "productName": "TwitchCommander",
   "version": "1.0.0",
-  "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
+  "description": "Twitch Chat Helper",
   "scripts": {
     "build": "concurrently \"yarn build-main\" \"yarn build-renderer\"",
     "build-dll": "cross-env NODE_ENV=development webpack --config ./configs/webpack.config.renderer.dev.dll.babel.js --colors",
@@ -21,6 +21,7 @@
     "package-ci": "yarn postinstall && yarn build && electron-builder --publish always",
     "package-linux": "yarn build && electron-builder build --linux",
     "package-win": "yarn build && electron-builder build --win --x64",
+    "package-win-portable": "yarn build && electron-builder build --win portable",
     "postinstall": "node -r @babel/register internals/scripts/CheckNativeDep.js && electron-builder install-app-deps && yarn build-dll && opencollective-postinstall",
     "postlint-fix": "prettier --ignore-path .eslintignore --single-quote --write '**/*.{js,jsx,json,html,css,less,scss,yml}'",
     "postlint-styles-fix": "prettier --ignore-path .eslintignore --single-quote --write '**/*.{css,scss}'",
@@ -51,8 +52,8 @@
     ]
   },
   "build": {
-    "productName": "ElectronReact",
-    "appId": "org.develar.ElectronReact",
+    "productName": "TwitchCommander",
+    "appId": "org.twoback.TwitchCommander",
     "files": [
       "dist/",
       "node_modules/",
@@ -197,6 +198,7 @@
     "@types/redux-logger": "^3.0.7",
     "@types/sinon": "^7.5.1",
     "@types/tapable": "^1.0.5",
+    "@types/tmi.js": "^1.4.0",
     "@types/vfile-message": "^2.0.0",
     "@types/webpack": "^4.41.3",
     "@typescript-eslint/eslint-plugin": "^2.17.0",
@@ -288,7 +290,8 @@
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "source-map-support": "^0.5.16"
+    "source-map-support": "^0.5.16",
+    "tmi.js": "^1.5.0"
   },
   "devEngines": {
     "node": ">=7.x",
